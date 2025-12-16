@@ -37,48 +37,64 @@
     <!-- Start Navbar -->
     <nav class="navbar position-sticky top-0 z-3">
       <div class="container">
-        <div
-          class="navbar-logo d-flex align-items-center justify-content-center"
-        >
+        <!-- Logo -->
+        <div class="navbar-logo d-flex align-items-center">
           <div
             class="navbar-icon d-flex align-items-center justify-content-center me-2"
           >
             <i class="fa fa-address-book"></i>
           </div>
+
           <div class="navbar-text ms-1">
-            <h1>
+            <h1 class="mb-0">
               Contact
               <span>Hub</span>
             </h1>
-            <p>Smart Contact Manager</p>
+            <p class="d-none d-sm-block">Smart Contact Manager</p>
           </div>
         </div>
-        <div class="navbar-buttons d-flex align-items-center gap-3">
+
+        <!-- Buttons -->
+        <div class="navbar-buttons d-flex align-items-center gap-2 gap-sm-3">
+          <!-- Add Button -->
           <div class="add-button">
-            <button id="addBtn" class="text-white border-0">
-              + Add Contact
+            <button id="addBtn" class="text-white border-0 px-3 py-2 rounded">
+              <span class="d-none d-md-inline">+ Add Contact</span>
+              <span class="d-md-none">+ Add</span>
             </button>
           </div>
+
+          <!-- Icons -->
           <div
-            class="extra-icons d-flex justify-content-center align-items-center gap-4"
+            class="extra-icons d-none d-md-flex justify-content-center align-items-center gap-4"
           >
-            <button class="border-0"><i class="fa fa-bell"></i></button>
-            <button class="border-0"><i class="fa fa-gear"></i></button>
+            <button class="border-0">
+              <i class="fa fa-bell"></i>
+            </button>
+            <button class="border-0">
+              <i class="fa fa-gear"></i>
+            </button>
           </div>
-          <div class="contact-profile overflow-hidden ring-2-gray-100">
+
+          <!-- Profile -->
+          <div class="contact-profile overflow-hidden">
             <img src="assets/images/contactPic.jpg" alt="profilePic" />
           </div>
         </div>
       </div>
     </nav>
+
     <!-- End Navbar -->
     <main>
-      <section class="stats mt-4">
+      <!-- Start Stats Section -->
+      <section class="stats mt-4 mb-4">
         <div class="container">
-          <div class="row g-3">
-            <div class="col-md-4">
+          <div class="row flex-wrap g-3">
+            <div class="col-6 col-lg-4">
               <div class="stats-item d-flex align-items-center p-3 bg-white">
-                <div class="stats-icon d-flex align-items-center justify-content-center">
+                <div
+                  class="stats-icon d-flex align-items-center justify-content-center"
+                >
                   <i class="fa fa-users"></i>
                 </div>
                 <div class="stats-item-text">
@@ -87,9 +103,11 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-6 col-lg-4">
               <div class="stats-item d-flex align-items-center p-3 bg-white">
-                <div class="stats-icon d-flex align-items-center justify-content-center">
+                <div
+                  class="stats-icon d-flex align-items-center justify-content-center"
+                >
                   <i class="fa fa-star"></i>
                 </div>
                 <div class="stats-item-text">
@@ -98,9 +116,11 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-6 col-lg-4">
               <div class="stats-item d-flex align-items-center p-3 bg-white">
-                <div class="stats-icon d-flex align-items-center justify-content-center">
+                <div
+                  class="stats-icon d-flex align-items-center justify-content-center"
+                >
                   <i class="fa fa-heart-pulse"></i>
                 </div>
                 <div class="stats-item-text">
@@ -109,6 +129,85 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Stats Section -->
+      <section class="contacts mt-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-8">
+              <div class="all-contacts">
+                <h2>All Contacts</h2>
+                <p>Manage and organize your 0 contacts</p>
+                <div class="searchInput position-relative">
+                  <div
+                    class="search-icon position-absolute translate-middle-y ms-3 top-50"
+                  >
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Search by name, phone, or email..."
+                    class="w-100 bg-white border rounded-3"
+                  />
+                </div>
+                <div class="no-contacts text-center">
+                  <div class="no-contacts-icon d-inline-block">
+                    <i class="fa fa-address-book"></i>
+                  </div>
+                  <div class="no-contacts-text">
+                    <h3>No contacts found</h3>
+                    <p>Click "Add Contact" to get started</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <aside class="col-xl-4">
+              <div class="quick-access d-flex flex-column">
+                <div class="favorites">
+                  <div class="favorites-card">
+                    <div
+                      class="favorites-card-header d-flex align-items-center"
+                    >
+                      <div
+                        class="favorites-card-header-icon d-flex align-items-center justify-content-center"
+                      >
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <div class="favorites-card-header-text">
+                        <h3>Favorites</h3>
+                        <p>Quick access to starred contacts</p>
+                      </div>
+                    </div>
+                    <div class="favorites-card-body">
+                      <p>No favorites yet</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="emergency">
+                  <div class="emergency-card">
+                    <div
+                      class="emergency-card-header d-flex align-items-center"
+                    >
+                      <div
+                        class="emergency-card-header-icon d-flex align-items-center justify-content-center"
+                      >
+                        <i class="fa fa-heart-pulse"></i>
+                      </div>
+                      <div class="emergency-card-header-text">
+                        <h3>Emergency</h3>
+                        <p>Important contacts for urgent calls</p>
+                      </div>
+                    </div>
+                    <div class="emergency-card-body">
+                      <p>No emergency contacts</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>

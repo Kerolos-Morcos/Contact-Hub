@@ -2,10 +2,30 @@
 /* Media Queries */
 /* Extra Small */
 @media (max-width: 575px) {
+  .favorites-card,
+  .emergency-card {
+    width: 100%;
+  }
+   .favorites-card {
+    margin-top: 20px;
+  }
+  .emergency-card {
+    margin-bottom: 30px;
+  }
 }
 
 /* Small */
 @media (min-width: 575px) {
+  .favorites-card,
+  .emergency-card {
+    width: 100%;
+  }
+  .favorites-card {
+    margin-top: 30px;
+  }
+  .emergency-card {
+    margin-bottom: 30px;
+  }
 }
 
 /* Medium */
@@ -18,6 +38,14 @@
 
 /* Extra Large */
 @media (min-width: 1200px) {
+  .favorites-card,
+  .emergency-card {
+    width: 93%;
+    margin-left: auto;
+  }
+  .favorites-card {
+    margin-top: 0;
+  }
 }
 
 /* Extra Extra Large */
