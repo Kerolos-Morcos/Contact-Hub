@@ -83,8 +83,9 @@
         </div>
       </div>
     </nav>
-
     <!-- End Navbar -->
+
+    <!-- Start Main -->
     <main>
       <!-- Start Stats Section -->
       <section class="stats mt-4 mb-4">
@@ -153,7 +154,8 @@
                     class="w-100 bg-white border rounded-3"
                   />
                 </div>
-                <div class="no-contacts text-center">
+                <!-- No Contacts -->
+                <div class="no-contacts text-center d-none">
                   <div class="no-contacts-icon d-inline-block">
                     <i class="fa fa-address-book"></i>
                   </div>
@@ -162,8 +164,158 @@
                     <p>Click "Add Contact" to get started</p>
                   </div>
                 </div>
+                <!-- No Contacts -->
+                <!-- Contacts -->
+                <div class="all-contacts-container">
+                  <div class="row g-4 mt-1 align-items-stretch">
+                    <!-- Card Layout -->
+                    <div class="col-12 col-sm-6 col-xl-6">
+                      <!-- card -->
+                      <div
+                        class="card custom-card h-100 d-flex flex-column pt-3 fixed-card-contact"
+                      >
+                        <!-- card header -->
+                        <div class="d-flex align-items-start gap-3 padding-all">
+                          <!-- Avatar -->
+                          <div class="position-relative flex-shrink-0">
+                            <img
+                              src="./avatars/food9.jpeg"
+                              alt="sadklajsd"
+                              class="avatar-img"
+                            />
+                            <!-- Emergency -->
+                            <span class="avatar-badge badge-danger">
+                              <i class="fa-solid fa-heart-pulse"></i>
+                            </span>
+                            <!-- Favorite -->
+                            <span class="avatar-badge badge-warning">
+                              <i class="fa-solid fa-star"></i>
+                            </span>
+                          </div>
+                          <!-- Content -->
+                          <div class="flex-grow-1 pt-1 text-truncate">
+                            <h6
+                              class="mb-1 fw-semibold text-dark text-truncate"
+                            >
+                              sadklajsd
+                            </h6>
+
+                            <div class="d-flex align-items-center gap-2">
+                              <span
+                                class="icon-box d-flex align-items-center justify-content-center phone"
+                              >
+                                <i class="fa-solid fa-phone"></i>
+                              </span>
+                              <span class="text-muted small text-truncate">
+                                01531531531
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- card header -->
+                        <!-- card contact mail & location -->
+                        <div class="mt-3 info-list padding-all">
+                          <!-- Email -->
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon-box email">
+                              <i class="fa-solid fa-envelope"></i>
+                            </span>
+                            <span class="text-muted small text-truncate">
+                              asdasd@asdasd.com
+                            </span>
+                          </div>
+                          <!-- Location -->
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon-box location">
+                              <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <span class="text-muted small text-truncate">
+                              asdsadasd
+                            </span>
+                          </div>
+                        </div>
+                        <!-- card contact mail & location -->
+                        <!-- card group -->
+                        <div
+                          class="d-flex flex-wrap gap-custom mt-3 padding-all mb-1"
+                        >
+                          <span class="badge-custom badge-school">school</span>
+                          <span class="badge-custom badge-emergency">
+                            <i class="badge-icon fa-solid fa-heart-pulse"></i>
+                            Emergency
+                          </span>
+                        </div>
+                        <!-- card group -->
+                        <!-- card footer -->
+                        <div class="card-footer-custom mt-2">
+                          <!-- Left actions -->
+                          <div
+                            class="d-flex align-items-center gap-custom padding-all"
+                          >
+                            <a
+                              href="tel:01531531531"
+                              class="icon-btn icon-emerald"
+                              title="Call"
+                            >
+                              <i class="fa-solid fa-phone"></i>
+                            </a>
+
+                            <button
+                              onclick="emailContact('asdasd@asdasd.com')"
+                              class="icon-btn icon-violet"
+                              title="Email"
+                            >
+                              <i class="fa-solid fa-envelope"></i>
+                            </button>
+                          </div>
+                          <!-- Right actions -->
+                          <div
+                            class="d-flex align-items-center gap-custom padding-all"
+                          >
+                            <button
+                              onclick="toggleFavorite('contact_1765991405056_914')"
+                              class="icon-btn icon-amber"
+                              title="Favorite"
+                            >
+                              <i class="fa-solid fa-star"></i>
+                            </button>
+
+                            <button
+                              onclick="toggleEmergency('contact_1765991405056_914')"
+                              class="icon-btn icon-rose"
+                              title="Emergency"
+                            >
+                              <i class="fa-solid fa-heart-pulse"></i>
+                            </button>
+
+                            <button
+                              onclick="editContactHandler('contact_1765991405056_914')"
+                              class="icon-btn icon-gray hover-indigo"
+                              title="Edit"
+                            >
+                              <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button
+                              onclick="deleteContactHandler('contact_1765991405056_914')"
+                              class="icon-btn icon-gray hover-rose"
+                              title="Delete"
+                            >
+                              <i class="fa-solid fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <!-- card footer -->
+                      </div>
+                      <!-- card -->
+                    </div>
+                    <!-- Card Layout -->
+                  </div>
+                </div>
+                <!-- Contacts -->
               </div>
             </div>
+            <!-- aside -->
             <aside class="col-xl-4">
               <div class="quick-access d-flex flex-column">
                 <div class="favorites">
@@ -181,11 +333,32 @@
                         <p>Quick access to starred contacts</p>
                       </div>
                     </div>
-                    <div class="favorites-card-body">
+                    <!-- card body -->
+                    <div
+                      class="favorites-card-body fixed-height-aside justify-content-center"
+                    >
                       <p>No favorites yet</p>
                     </div>
+                    <div class="contacts-list p-3 fixed-height-aside d-none">
+                      <div class="contact-item">
+                        <!-- Avatar -->
+                        <div class="contact-avatar">
+                          <img src="./avatars/food9.jpeg" alt="Name" />
+                        </div>
+                        <div class="contact-info">
+                          <h4 class="contact-name">Contact Name</h4>
+                          <p class="contact-phone">01531531531</p>
+                        </div>
+                        <!-- Call button -->
+                        <a href="tel:01531531531" class="call-btn">
+                          <i class="fa-solid fa-phone"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <!-- card body -->
                   </div>
                 </div>
+                <!-- Emergency -->
                 <div class="emergency">
                   <div class="emergency-card">
                     <div
@@ -201,17 +374,23 @@
                         <p>Important contacts for urgent calls</p>
                       </div>
                     </div>
-                    <div class="emergency-card-body">
+                    <!-- No Emergency -->
+                    <div
+                      class="emergency-card-body fixed-height-aside justify-content-center"
+                    >
                       <p>No emergency contacts</p>
                     </div>
+                    <!-- No Emergency -->
                   </div>
                 </div>
               </div>
             </aside>
+            <!-- aside -->
           </div>
         </div>
       </section>
     </main>
+    <!-- End Main -->
 
     <!-- Bootstrap -->
     <script

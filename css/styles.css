@@ -89,7 +89,7 @@ body {
   scroll-behavior: smooth;
   transition: opacity ease-in 0.2s;
   background-color: #f8fafc;
-  /* height: 1000px; */
+  height: 1000px;
 }
 h1,
 h2,
@@ -112,7 +112,7 @@ img {
   padding-left: 40px;
   padding-right: 40px;
 }
-main{
+main {
   min-height: 100vh;
 }
 /* Sections */
@@ -305,13 +305,11 @@ nav.navbar {
 /* Quick Access */
 aside {
   position: sticky;
-  top: 110px;
   align-self: flex-start;
+  top: 110px;
 }
 .quick-access {
   gap: 25px;
-  /* top: 110px; */
-  /* position: sticky; */
 }
 .favorites-card,
 .emergency-card {
@@ -392,4 +390,307 @@ aside {
   color: var(--color-gray-400);
   font-size: 14px;
 }
+/* Contact Card */
+.custom-card {
+  background-color: var(--color-white);
+  border-radius: 11px;
+  border: 1px solid var(--color-gray-100);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
+}
+.fixed-height-aside {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 120px;
+}
+.fixed-card-contact {
+  height: 100%;
+  min-height: 260px;
+}
+.padding-all {
+  padding: 0px 15px;
+}
+/* Hover effects */
+.custom-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-gray-200);
+}
+/* header */
+/* Avatar */
+.avatar-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: cover;
+}
 
+/* Avatar badges */
+.avatar-badge {
+  position: absolute;
+  padding: 11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+}
+
+.avatar-badge.badge-danger {
+  bottom: -2px;
+  right: -2px;
+  background: var(--color-rose-500);
+}
+
+.avatar-badge.badge-warning {
+  top: -2px;
+  right: -2px;
+  background: var(--color-amber-400);
+}
+
+.icon-box {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  font-size: 10px;
+}
+
+.icon-box.phone {
+  background: var(--color-blue-100);
+  color: var(--color-blue-600);
+}
+
+.info-list > * + * {
+  margin-top: 8px;
+}
+
+.icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.icon-box.email {
+  background: var(--color-purple-100);
+  color: var(--color-purple-700);
+}
+
+.icon-box.location {
+  background: var(--color-green-100);
+  color: var(--color-green-700);
+}
+
+.gap-custom {
+  gap: 6px;
+}
+
+.badge-custom {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 6px;
+  line-height: 1;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+.badge-school {
+  background-color: var(--color-amber-100);
+  color: var(--color-amber-700);
+}
+.badge-emergency {
+  background-color: var(--color-rose-100);
+  color: var(--color-rose-700);
+}
+
+.badge-icon {
+  font-size: 10px;
+  margin-right: 4px;
+}
+
+/* Footer */
+.card-footer-custom {
+  border-top: 1px solid var(--color-gray-100);
+  background-color: rgba(249, 250, 251, 0.8);
+  padding: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gap-custom {
+  gap: 6px;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.icon-btn i {
+  font-size: 14px;
+}
+.card-footer-custom a {
+  text-decoration: none;
+}
+.icon-emerald {
+  background-color: var(--color-green-100);
+  color: var(--color-emerald-600);
+}
+.icon-emerald:hover {
+  background-color: var(--color-green-200);
+}
+
+.icon-violet {
+  background-color: var(--color-purple-100);
+  color: var(--color-purple-600);
+}
+.icon-violet:hover {
+  background-color: var(--color-purple-200);
+}
+
+.icon-amber {
+  background-color: var(--color-amber-50);
+  color: var(--color-amber-500);
+}
+.icon-amber:hover {
+  background-color: var(--color-amber-100);
+}
+
+.icon-rose {
+  background-color: var(--color-rose-50);
+  color: var(--color-rose-600);
+}
+.icon-rose:hover {
+  background-color: var(--color-rose-100);
+}
+
+.icon-gray {
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-500);
+}
+
+/* hover variants */
+.hover-indigo:hover {
+  background-color: var(--color-blue-100);
+  color: var(--color-blue-600);
+}
+
+.hover-rose:hover {
+  background-color: var(--color-red-50);
+  color: var(--color-red-600);
+}
+/* aside content style */
+/* Scroll container */
+.contacts-list {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/* Contact item */
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 1px 8px;
+  border-radius: 12px;
+  background-color: var(--color-gray-50);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 12px;
+}
+.contact-item:hover {
+  background-color: var(--color-amber-50);
+}
+.contact-avatar {
+  flex-shrink: 0;
+}
+.contact-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.avatar-initials {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.avatar-initials.bg-pink {
+  background: linear-gradient(135deg, #d946ef, #ec4899);
+}
+
+.avatar-initials.bg-blue {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+/* Info */
+.contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-phone {
+  font-size: 12px;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.call-btn {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--color-emerald-100);
+  color: var(--color-emerald-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+}
+
+.contact-item:hover .call-btn {
+  background-color: var(--color-emerald-600);
+  color: var(--color-white);
+}
+
+.call-btn i {
+  font-size: 12px;
+}
