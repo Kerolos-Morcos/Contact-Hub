@@ -89,7 +89,7 @@ body {
   scroll-behavior: smooth;
   transition: opacity ease-in 0.2s;
   background-color: #f8fafc;
-  height: 1000px;
+  /* min-height: 1000px; */
 }
 h1,
 h2,
@@ -303,10 +303,11 @@ nav.navbar {
   line-height: 20px;
 }
 /* Quick Access */
-aside {
+.aside-sticky {
   position: sticky;
-  align-self: flex-start;
   top: 110px;
+  align-self: flex-start;
+  outline: 3px solid red;
 }
 .quick-access {
   gap: 25px;
@@ -424,7 +425,6 @@ aside {
   width: 56px;
   height: 56px;
   border-radius: 12px;
-  object-fit: cover;
 }
 
 /* Avatar badges */
@@ -629,7 +629,6 @@ aside {
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  object-fit: cover;
 }
 .avatar-initials {
   width: 40px;

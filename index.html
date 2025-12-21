@@ -324,7 +324,7 @@
                 <!-- No Contacts -->
                 <!-- Contacts -->
                 <div class="all-contacts-container">
-                  <div class="row g-4 mt-1 align-items-stretch">
+                  <div class="row g-4 mb-4 mt-1 align-items-stretch">
                     <!-- Card Layout -->
                     <div class="col-12 col-sm-6 col-xl-6">
                       <!-- card -->
@@ -408,7 +408,9 @@
                           </div>
                         </div>
                         <!-- card footer -->
-                        <div class="card-footer-custom mt-2 position-absolute bottom-0 start-0 end-0">
+                        <div
+                          class="card-footer-custom mt-2 position-absolute bottom-0 start-0 end-0"
+                        >
                           <!-- Left actions -->
                           <div
                             class="d-flex align-items-center gap-custom padding-all"
@@ -478,70 +480,72 @@
             </div>
             <!-- aside -->
             <aside class="col-xl-4">
-              <div class="quick-access d-flex flex-column">
-                <div class="favorites">
-                  <div class="favorites-card">
-                    <div
-                      class="favorites-card-header d-flex align-items-center"
-                    >
+              <div class="aside-sticky">
+                <div class="quick-access d-flex flex-column">
+                  <div class="favorites">
+                    <div class="favorites-card">
                       <div
-                        class="favorites-card-header-icon d-flex align-items-center justify-content-center"
+                        class="favorites-card-header d-flex align-items-center"
                       >
-                        <i class="fa fa-star"></i>
-                      </div>
-                      <div class="favorites-card-header-text">
-                        <h3>Favorites</h3>
-                        <p>Quick access to starred contacts</p>
-                      </div>
-                    </div>
-                    <!-- card body -->
-                    <div
-                      class="favorites-card-body fixed-height-aside justify-content-center"
-                    >
-                      <p>No favorites yet</p>
-                    </div>
-                    <div class="contacts-list p-3 fixed-height-aside d-none">
-                      <div class="contact-item">
-                        <!-- Avatar -->
-                        <div class="contact-avatar">
-                          <img src="./avatars/food9.jpeg" alt="Name" />
+                        <div
+                          class="favorites-card-header-icon d-flex align-items-center justify-content-center"
+                        >
+                          <i class="fa fa-star"></i>
                         </div>
-                        <div class="contact-info">
-                          <h4 class="contact-name">Contact Name</h4>
-                          <p class="contact-phone">01531531531</p>
+                        <div class="favorites-card-header-text">
+                          <h3>Favorites</h3>
+                          <p>Quick access to starred contacts</p>
                         </div>
-                        <!-- Call button -->
-                        <a href="tel:01531531531" class="call-btn">
-                          <i class="fa-solid fa-phone"></i>
-                        </a>
                       </div>
+                      <!-- card body -->
+                      <div
+                        class="favorites-card-body fixed-height-aside justify-content-center"
+                      >
+                        <p>No favorites yet</p>
+                      </div>
+                      <div class="contacts-list p-3 fixed-height-aside d-none">
+                        <div class="contact-item">
+                          <!-- Avatar -->
+                          <div class="contact-avatar">
+                            <img src="./avatars/food9.jpeg" alt="Name" />
+                          </div>
+                          <div class="contact-info">
+                            <h4 class="contact-name">Contact Name</h4>
+                            <p class="contact-phone">01531531531</p>
+                          </div>
+                          <!-- Call button -->
+                          <a href="tel:01531531531" class="call-btn">
+                            <i class="fa-solid fa-phone"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <!-- card body -->
                     </div>
-                    <!-- card body -->
                   </div>
-                </div>
-                <!-- Emergency -->
-                <div class="emergency">
-                  <div class="emergency-card">
-                    <div
-                      class="emergency-card-header d-flex align-items-center"
-                    >
+                  <!-- Emergency -->
+                  <div class="emergency">
+                    <div class="emergency-card">
                       <div
-                        class="emergency-card-header-icon d-flex align-items-center justify-content-center"
+                        class="emergency-card-header d-flex align-items-center"
                       >
-                        <i class="fa fa-heart-pulse"></i>
+                        <div
+                          class="emergency-card-header-icon d-flex align-items-center justify-content-center"
+                        >
+                          <i class="fa fa-heart-pulse"></i>
+                        </div>
+                        <div class="emergency-card-header-text">
+                          <h3>Emergency</h3>
+                          <p>Important contacts for urgent calls</p>
+                        </div>
                       </div>
-                      <div class="emergency-card-header-text">
-                        <h3>Emergency</h3>
-                        <p>Important contacts for urgent calls</p>
+                      <!-- No Emergency -->
+                      <div
+                        class="emergency-card-body fixed-height-aside justify-content-center"
+                      >
+                        <p>No emergency contacts</p>
                       </div>
+                      <!-- No Emergency -->
                     </div>
-                    <!-- No Emergency -->
-                    <div
-                      class="emergency-card-body fixed-height-aside justify-content-center"
-                    >
-                      <p>No emergency contacts</p>
-                    </div>
-                    <!-- No Emergency -->
                   </div>
                 </div>
               </div>
