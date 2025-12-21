@@ -399,6 +399,7 @@ aside {
   transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   overflow: hidden;
 }
+
 .fixed-height-aside {
   display: flex;
   flex-direction: column;
@@ -442,14 +443,14 @@ aside {
 }
 
 .avatar-badge.badge-danger {
-  bottom: -2px;
-  right: -2px;
+  bottom: -5px;
+  right: -8px;
   background: var(--color-rose-500);
 }
 
 .avatar-badge.badge-warning {
-  top: -2px;
-  right: -2px;
+  top: -5px;
+  right: -8px;
   background: var(--color-amber-400);
 }
 
@@ -693,4 +694,183 @@ aside {
 
 .call-btn i {
   font-size: 12px;
+}
+
+/* Modal Add */
+.custom-modal {
+  width: 540px;
+  margin: auto;
+  border-radius: 16px;
+  max-height: 90vh;
+  overflow: hidden;
+}
+.custom-modal ::-webkit-scrollbar {
+  display: none;
+}
+
+/* Header */
+.custom-modal-header {
+  position: sticky;
+  top: 0;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-100);
+  z-index: 10;
+}
+
+.btn-close {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  color: var(--color-gray-400);
+  border-radius: 8px;
+  border: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-close:hover {
+  color: var(--color-gray-600);
+  background-color: var(--color-gray-100);
+}
+
+/* Avatar */
+.avatar-preview {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-400),
+    var(--color-blue-600)
+  );
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: auto;
+}
+/* Body */
+.custom-modal-body {
+  padding: 30px;
+}
+.avatar-div label {
+  padding: 7px 14px;
+  background-color: var(--color-gray-100);
+  border-radius: 6px;
+}
+.avatar-div label:hover {
+  background-color: var(--color-gray-200);
+  border-color: var(--color-gray-200);
+}
+.avatar-div .fa-camera {
+  color: var(--color-gray-500);
+}
+.fName label,
+.phoneNum label,
+.email label,
+.address label,
+.groupSelect label,
+.notes label {
+  font-size: 15px;
+  font-weight: 400 !important;
+  margin: 0px 0px 1px 0px;
+}
+.custom-textarea {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background-color: var(--color-gray-50);
+  border: 1px solid var(--color-gray-200);
+  font-size: 0.875rem;
+  resize: none;
+  transition: all 0.2s ease;
+}
+
+.custom-textarea:focus {
+  background-color: var(--color-white);
+  border-color: var(--color-violet-500);
+  outline: none;
+  box-shadow: 0 0 0 0.15rem rgba(124, 58, 237, 0.2);
+}
+
+.custom-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  border-color: var(--color-gray-600);
+  border-radius: 0.375rem;
+}
+
+.custom-checkbox:checked {
+  border-color: var(--color-gray-600);
+  background-color: var(--color-gray-600);
+}
+
+/* focus ring */
+.custom-checkbox:focus {
+  border-color: var(--color-gray-600);
+  box-shadow: none;
+}
+
+/* Footer Btns */
+.custom-modal-footer {
+  border-top: 1px solid #eee;
+  gap: 12px;
+}
+
+/* Inputs */
+.custom-input {
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: #f8f9fa;
+}
+.custom-input::placeholder,
+.custom-textarea::placeholder,
+#groupSelect {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.custom-input:focus {
+  background: #fff;
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 0.15rem rgba(111, 66, 193, 0.2);
+}
+
+.custom-modal-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+}
+
+.custom-modal-footer .btn {
+  flex: 1;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+}
+.btn-cancel {
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-700);
+  border: none;
+}
+
+.btn-cancel:hover {
+  background-color: var(--color-gray-300);
+}
+
+.btn-primary-gradient {
+  background: linear-gradient(
+    to right,
+    var(--color-violet-600),
+    var(--color-indigo-600)
+  );
+  color: var(--color-white);
+  border: none;
+}
+
+.btn-primary-gradient:hover {
+  color: var(--color-white);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.35);
 }

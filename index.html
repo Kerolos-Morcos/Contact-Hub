@@ -58,7 +58,12 @@
         <div class="navbar-buttons d-flex align-items-center gap-2 gap-sm-3">
           <!-- Add Button -->
           <div class="add-button">
-            <button id="addBtn" class="text-white border-0 px-3 py-2 rounded">
+            <button
+              id="addBtn"
+              class="text-white border-0 px-3 py-2 rounded"
+              data-bs-toggle="modal"
+              data-bs-target="#addModal"
+            >
               <span class="d-none d-md-inline">+ Add Contact</span>
               <span class="d-md-none">+ Add</span>
             </button>
@@ -84,7 +89,159 @@
       </div>
     </nav>
     <!-- End Navbar -->
+    <!-- Add Modal -->
+    <div
+      class="modal fade"
+      id="addModal"
+      tabindex="-1"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div
+        class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
+      >
+        <div class="modal-content custom-modal">
+          <!-- Header -->
+          <div class="modal-header custom-modal-header">
+            <h5 class="modal-title fw-bold pt-2">Add New Contact</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
 
+          <!-- Body -->
+          <div class="modal-body custom-modal-body">
+            <!-- Avatar -->
+            <div class="avatar-div text-center mb-4">
+              <div class="avatar-preview mb-2">
+                <i class="fa-solid fa-user"></i>
+              </div>
+
+              <label class="btn btn-light btn-sm">
+                <i class="fa-solid fa-camera me-1"></i>
+                Change Photo
+                <input type="file" hidden />
+              </label>
+            </div>
+
+            <!-- Name -->
+            <div class="fName mb-3">
+              <label class="form-label fw-semibold">
+                Full Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter full name"
+                class="form-control custom-input"
+              />
+            </div>
+
+            <!-- Phone -->
+            <div class="phoneNum mb-3">
+              <label class="form-label fw-semibold">
+                Phone Number
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="e.g., 01012345678"
+                class="form-control custom-input"
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="email mb-3">
+              <label class="form-label fw-semibold">Email</label>
+              <input
+                type="email"
+                placeholder="name@example.com"
+                class="form-control custom-input"
+              />
+            </div>
+
+            <!-- Address -->
+            <div class="address mb-3">
+              <label class="form-label fw-semibold">Address</label>
+              <input
+                type="text"
+                placeholder="Enter address"
+                class="form-control custom-input"
+              />
+            </div>
+
+            <!-- Group -->
+            <div class="groupSelect mb-3">
+              <label class="form-label fw-semibold">Group</label>
+              <select class="form-select custom-input" id="groupSelect">
+                <option value="" disabled selected>Select group</option>
+                <option value="Family">Family</option>
+                <option value="Friends">Friends</option>
+                <option value="Work">Work</option>
+                <option value="School">School</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Notes -->
+            <div class="notes mb-3">
+              <label class="form-label fw-semibold">Notes</label>
+              <textarea
+                rows="2"
+                class="form-control custom-textarea"
+                placeholder="Add notes about this contact"
+              ></textarea>
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="check-quick d-flex gap-4 mt-4 mb-0">
+              <div class="form-check">
+                <input
+                  class="form-check-input custom-checkbox"
+                  type="checkbox"
+                />
+                <label class="form-check-label fw-semibold">
+                  <i class="fa-solid fa-star text-warning me-1"></i>
+                  Favorite
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input custom-checkbox"
+                  type="checkbox"
+                />
+                <label class="form-check-label fw-semibold">
+                  <i class="fa-solid fa-heart-pulse text-danger me-1"></i>
+                  Emergency
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="modal-footer custom-modal-footer">
+            <button
+              type="button"
+              class="btn btn-cancel"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+
+            <button type="submit" class="btn btn-primary-gradient">
+              <i class="fa-solid fa-check me-2"></i>
+              Save Contact
+            </button>
+          </div>
+          <!-- End Footer -->
+        </div>
+      </div>
+    </div>
+    <!-- Add Modal -->
     <!-- Start Main -->
     <main>
       <!-- Start Stats Section -->
@@ -174,80 +331,84 @@
                       <div
                         class="card custom-card h-100 d-flex flex-column pt-3 fixed-card-contact"
                       >
-                        <!-- card header -->
-                        <div class="d-flex align-items-start gap-3 padding-all">
-                          <!-- Avatar -->
-                          <div class="position-relative flex-shrink-0">
-                            <img
-                              src="./avatars/food9.jpeg"
-                              alt="sadklajsd"
-                              class="avatar-img"
-                            />
-                            <!-- Emergency -->
-                            <span class="avatar-badge badge-danger">
-                              <i class="fa-solid fa-heart-pulse"></i>
-                            </span>
-                            <!-- Favorite -->
-                            <span class="avatar-badge badge-warning">
-                              <i class="fa-solid fa-star"></i>
-                            </span>
-                          </div>
-                          <!-- Content -->
-                          <div class="flex-grow-1 pt-1 text-truncate">
-                            <h6
-                              class="mb-1 fw-semibold text-dark text-truncate"
-                            >
-                              sadklajsd
-                            </h6>
-
-                            <div class="d-flex align-items-center gap-2">
-                              <span
-                                class="icon-box d-flex align-items-center justify-content-center phone"
+                        <div class="card-body-custom flex-grow-1">
+                          <!-- card header -->
+                          <div
+                            class="d-flex align-items-start gap-3 padding-all"
+                          >
+                            <!-- Avatar -->
+                            <div class="position-relative flex-shrink-0">
+                              <img
+                                src="./assets/images/contactPic.jpg"
+                                alt="sadklajsd"
+                                class="avatar-img"
+                              />
+                              <!-- Emergency -->
+                              <span class="avatar-badge badge-danger">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                              </span>
+                              <!-- Favorite -->
+                              <span class="avatar-badge badge-warning">
+                                <i class="fa-solid fa-star"></i>
+                              </span>
+                            </div>
+                            <!-- Content -->
+                            <div class="flex-grow-1 pt-1 text-truncate">
+                              <h6
+                                class="mb-1 fw-semibold text-dark text-truncate"
                               >
-                                <i class="fa-solid fa-phone"></i>
+                                sadklajsd
+                              </h6>
+
+                              <div class="d-flex align-items-center gap-2">
+                                <span
+                                  class="icon-box d-flex align-items-center justify-content-center phone"
+                                >
+                                  <i class="fa-solid fa-phone"></i>
+                                </span>
+                                <span class="text-muted small text-truncate">
+                                  01531531531
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- card contact mail & location -->
+                          <div class="mt-3 info-list padding-all">
+                            <!-- Email -->
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="icon-box email">
+                                <i class="fa-solid fa-envelope"></i>
                               </span>
                               <span class="text-muted small text-truncate">
-                                01531531531
+                                asdasd@asdasd.com
+                              </span>
+                            </div>
+                            <!-- Location -->
+                            <div class="d-flex align-items-center gap-2">
+                              <span class="icon-box location">
+                                <i class="fa-solid fa-location-dot"></i>
+                              </span>
+                              <span class="text-muted small text-truncate">
+                                asdsadasd
                               </span>
                             </div>
                           </div>
-                        </div>
-                        <!-- card header -->
-                        <!-- card contact mail & location -->
-                        <div class="mt-3 info-list padding-all">
-                          <!-- Email -->
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="icon-box email">
-                              <i class="fa-solid fa-envelope"></i>
+                          <!-- card group -->
+                          <div
+                            class="d-flex flex-wrap gap-custom mt-3 padding-all mb-1"
+                          >
+                            <span class="badge-custom badge-school">
+                              school
                             </span>
-                            <span class="text-muted small text-truncate">
-                              asdasd@asdasd.com
-                            </span>
-                          </div>
-                          <!-- Location -->
-                          <div class="d-flex align-items-center gap-2">
-                            <span class="icon-box location">
-                              <i class="fa-solid fa-location-dot"></i>
-                            </span>
-                            <span class="text-muted small text-truncate">
-                              asdsadasd
+                            <span class="badge-custom badge-emergency">
+                              <i class="badge-icon fa-solid fa-heart-pulse"></i>
+                              Emergency
                             </span>
                           </div>
                         </div>
-                        <!-- card contact mail & location -->
-                        <!-- card group -->
-                        <div
-                          class="d-flex flex-wrap gap-custom mt-3 padding-all mb-1"
-                        >
-                          <span class="badge-custom badge-school">school</span>
-                          <span class="badge-custom badge-emergency">
-                            <i class="badge-icon fa-solid fa-heart-pulse"></i>
-                            Emergency
-                          </span>
-                        </div>
-                        <!-- card group -->
                         <!-- card footer -->
-                        <div class="card-footer-custom mt-2">
+                        <div class="card-footer-custom mt-2 position-absolute bottom-0 start-0 end-0">
                           <!-- Left actions -->
                           <div
                             class="d-flex align-items-center gap-custom padding-all"
