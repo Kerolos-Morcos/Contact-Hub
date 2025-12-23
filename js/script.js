@@ -20,6 +20,12 @@ const avatarPreview = document.getElementById("avatarPreview");
 const avatarIcon = document.querySelector(".fa-user");
 // Handle no-contacts
 const noContacts = document.querySelector(".no-contacts");
+// All Contacts Length
+const allContactsLength = document.querySelector(".all-contacts p span");
+// Total, Favorite & Emergency Stats
+const totalStats = document.querySelector(".totalStats");
+const favoriteStats = document.querySelector(".favoriteStats");
+const emergencyStats = document.querySelector(".emergencyStats");
 
 // Regular Expressions For Validation
 const regex = {
@@ -190,9 +196,18 @@ function handleDisplayLocalStorage() {
   } else {
     noContacts.classList.replace("d-block", "d-none");
   }
+  getItemsLength(contacts);
   displayContactFun();
 }
 handleDisplayLocalStorage();
+
+// Items Length
+function getItemsLength(items) {
+  allContactsLength.innerHTML = items.length;
+  totalStats.innerHTML = items.length;
+  favoriteStats.innerHTML = Array(items.isFavorite).length;
+  emergencyStats.innerHTML = Array(items.isEmergency).length;
+}
 
 // Deleting Contact By Id Fun
 function deleteContactFun(id) {
