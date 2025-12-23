@@ -99,6 +99,7 @@
       class="modal fade"
       id="addModal"
       tabindex="-1"
+      aria-hidden="true"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
     >
@@ -344,22 +345,22 @@
 
                 <!-- Contacts -->
                 <div class="all-contacts-container">
+                  <!-- No Contacts -->
+                  <div class="no-contacts text-center d-none">
+                    <div class="no-contacts-icon d-inline-block">
+                      <i class="fa fa-address-book"></i>
+                    </div>
+                    <div class="no-contacts-text">
+                      <h3>No contacts found</h3>
+                      <p>Click "Add Contact" to get started</p>
+                    </div>
+                  </div>
+                  <!-- No Contacts -->
                   <div
                     class="row g-4 mb-4 mt-1 align-items-stretch"
                     id="contactCardsRow"
                   >
                     <!-- Card Layout -->
-                    <!-- No Contacts -->
-                    <div class="no-contacts text-center">
-                      <div class="no-contacts-icon d-inline-block">
-                        <i class="fa fa-address-book"></i>
-                      </div>
-                      <div class="no-contacts-text">
-                        <h3>No contacts found</h3>
-                        <p>Click "Add Contact" to get started</p>
-                      </div>
-                    </div>
-                    <!-- No Contacts -->
                     <!-- Card Layout -->
                   </div>
                 </div>

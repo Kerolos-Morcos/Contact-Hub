@@ -18,6 +18,8 @@ const saveContactBtn = document.getElementById("saveContactBtn");
 const avatarInput = document.getElementById("contactAvatar");
 const avatarPreview = document.getElementById("avatarPreview");
 const avatarIcon = document.querySelector(".fa-user");
+// Handle no-contacts
+const noContacts = document.querySelector(".no-contacts");
 
 // Regular Expressions For Validation
 const regex = {
@@ -118,8 +120,8 @@ function closeModal() {
   //   addModal.style.display = "none";
   //   addModal.classList.remove("show");
   //   document.body.classList.remove("modal-open");
-  //   document.body.style.overflow = "auto";
-  //   document.body.style.paddingRight = "";
+  // document.body.style.overflow = "auto";
+  // document.body.style.paddingRight = "";
   //   const backdrop = document.querySelector(".modal-backdrop");
   //   if (backdrop) backdrop.remove();
 }
@@ -183,6 +185,11 @@ function addContactFun() {
 function handleDisplayLocalStorage() {
   let contactsLocalStorage = JSON.parse(localStorage.getItem("contacts"));
   contacts = contactsLocalStorage ? contactsLocalStorage : [];
+  if (contacts.length === 0) {
+    noContacts.classList.replace("d-none", "d-block");
+  } else {
+    noContacts.classList.replace("d-block", "d-none");
+  }
   displayContactFun();
 }
 handleDisplayLocalStorage();
