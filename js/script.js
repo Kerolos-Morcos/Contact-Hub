@@ -12,6 +12,8 @@ const groupSelect = document.getElementById("groupSelect");
 const contactNotes = document.getElementById("contactNotes");
 const contactFavorite = document.getElementById("contactFavorite");
 const contactEmergency = document.getElementById("contactEmergency");
+// Modal Title
+const modalTitle = document.querySelector(".modal-title");
 // Modal Save Button
 const saveContactBtn = document.getElementById("saveContactBtn");
 // Image Handler
@@ -196,17 +198,19 @@ function handleDisplayLocalStorage() {
   } else {
     noContacts.classList.replace("d-block", "d-none");
   }
-  getItemsLength(contacts);
+  getItemsLength();
   displayContactFun();
 }
 handleDisplayLocalStorage();
 
-// Items Length 
-function getItemsLength(items) {
-  allContactsLength.innerHTML = items.length;
-  totalStats.innerHTML = items.length;
-  favoriteStats.innerHTML = Array(items.isFavorite).length;
-  emergencyStats.innerHTML = Array(items.isEmergency).length;
+// Items Length
+function getItemsLength() {
+  let favoriteContacts = contacts.filter((c) => c.isFavorite);
+  let emergencyContacts = contacts.filter((c) => c.isEmergency);
+  allContactsLength.innerHTML = contacts.length;
+  totalStats.innerHTML = contacts.length;
+  favoriteStats.innerHTML = favoriteContacts.length;
+  emergencyStats.innerHTML = emergencyContacts.length;
 }
 
 // Deleting Contact By Id Fun
@@ -238,6 +242,26 @@ function deleteContactFun(id) {
     }
   }
 }
+
+// Update Contact By Id Fun
+// function updateContactFun(id) {
+//   modalTitle.innerText = "Edit Contact";
+//   for (let i = 0; i < contacts.length; i++) {
+//     if (contacts[i].id === id) {
+//       contactFullName.value = contacts[i].name;
+//       contactPhoneNumber.value = contacts[i].phone;
+//       contactEmail.value = contacts[i].email;
+//       contactAddress.value = contacts[i].address;
+//       groupSelect.value = contacts[i].group;
+//       contactNotes.value = contacts[i].notes;
+//       contactFavorite.checked = contacts[i].isFavorite;
+//       contactEmergency.checked = contacts[i].isEmergency;
+//       // avatar
+
+//       break;
+//     }
+//   }
+// }
 
 // HTML Structure Display
 function displayContactFun() {
@@ -405,7 +429,7 @@ function displayContactFun() {
                             </button>
 
                             <button
-                              onclick="editContactHandler('contact_1765991405056_914')"
+                              onclick="updateContactFun(${contacts[i].id})"
                               class="icon-btn icon-gray hover-indigo"
                               title="Edit"
                             >
@@ -429,4 +453,20 @@ function displayContactFun() {
   }
 
   contactCardsRow.innerHTML = box;
+}
+
+function updateContactFun(currentEditId) {
+  const index = contacts.findIndex((c) => c.id === currentEditId);
+  if (index === -1) return;
+
+  localStorage.setItem("contacts", JSON.stringify(contacts));
+  handleDisplayLocalStorage();
+
+  closeModal();
+  clearModalInputs();
+
+  isEditMode = false;
+  currentEditId = null;
+
+  Swal.fire("Updated!", "Contact updated successfully.", "success");
 }
