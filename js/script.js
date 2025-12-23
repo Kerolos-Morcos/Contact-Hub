@@ -113,13 +113,15 @@ cancelBtn.addEventListener("click", clearModalInputs);
 
 // Close Modal
 function closeModal() {
-  addModal.style.display = "none";
-  addModal.classList.remove("show");
-  document.body.classList.remove("modal-open");
-  document.body.style.overflow = "auto";
-  document.body.style.paddingRight = "";
-  const backdrop = document.querySelector(".modal-backdrop");
-  if (backdrop) backdrop.remove();
+  const modalInstance = bootstrap.Modal.getInstance(addModal);
+  modalInstance.hide();
+  //   addModal.style.display = "none";
+  //   addModal.classList.remove("show");
+  //   document.body.classList.remove("modal-open");
+  //   document.body.style.overflow = "auto";
+  //   document.body.style.paddingRight = "";
+  //   const backdrop = document.querySelector(".modal-backdrop");
+  //   if (backdrop) backdrop.remove();
 }
 
 // Clear Modal Inputs
@@ -187,12 +189,29 @@ handleDisplayLocalStorage();
 
 // Deleting Contact By Id Fun
 function deleteContactFun(id) {
-  console.log(id);
   for (let i = 0; i < contacts.length; i++) {
-    if (contacts[i].id == id) {
-      contacts.splice(i, 1);
-      localStorage.setItem("contacts", JSON.stringify(contacts));
-      handleDisplayLocalStorage();
+    if (contacts[i].id === id) {
+      Swal.fire({
+        title: "Delete Contact?",
+        text: `Are you sure you want to delete ${contacts[i].name}?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#6b7280",
+        confirmButtonText: "Yes, delete it!",
+      }).then((choice) => {
+        if (choice.isConfirmed) {
+          contacts.splice(i, 1);
+          localStorage.setItem("contacts", JSON.stringify(contacts));
+          handleDisplayLocalStorage();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Contact has been deleted.",
+            icon: "success",
+            showConfirmButton: false,
+          });
+        }
+      });
       break;
     }
   }
