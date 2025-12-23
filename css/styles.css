@@ -408,7 +408,7 @@ nav.navbar {
 }
 .fixed-card-contact {
   height: 100%;
-  min-height: 260px;
+  /* min-height: 260px; */
 }
 .padding-all {
   padding: 0px 15px;
@@ -505,9 +505,26 @@ nav.navbar {
   text-transform: capitalize;
   white-space: nowrap;
 }
+/* Badge Colors */
+.badge-family {
+  background-color: var(--color-blue-100);
+  color: var(--color-blue-700);
+}
+.badge-friends {
+  background-color: var(--color-green-100);
+  color: var(--color-green-700);
+}
+.badge-work {
+  background-color: var(--color-purple-100);
+  color: var(--color-purple-700);
+}
 .badge-school {
   background-color: var(--color-amber-100);
   color: var(--color-amber-700);
+}
+.badge-other {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-700);
 }
 .badge-emergency {
   background-color: var(--color-rose-100);

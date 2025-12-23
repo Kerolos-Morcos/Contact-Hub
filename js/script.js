@@ -287,13 +287,33 @@ function displayContactFun() {
                           <div
                             class="d-flex flex-wrap gap-custom mt-3 padding-all mb-1"
                           >
-                            <span class="badge-custom badge-school">
-                              school
-                            </span>
-                            <span class="badge-custom badge-emergency">
-                              <i class="badge-icon fa-solid fa-heart-pulse"></i>
-                              Emergency
-                            </span>
+                          ${
+                            {
+                              Family: `<span class="badge-custom badge-family">
+                              Family
+                            </span>`,
+                              Friends: `<span class="badge-custom badge-friends">
+                              Friends
+                            </span>`,
+                              Work: `<span class="badge-custom badge-work">
+                              Work
+                            </span>`,
+                              School: `<span class="badge-custom badge-school">
+                              School
+                            </span>`,
+                              Other: `<span class="badge-custom badge-other">
+                              Other
+                            </span>`,
+                            }[contacts[i].group] || ""
+                          }
+                            ${
+                              contacts[i].isEmergency
+                                ? `<span class="badge-custom badge-emergency">
+                                  <i class="badge-icon fa-solid fa-heart-pulse"></i>
+                                  Emergency
+                                </span>`
+                                : ""
+                            }
                           </div>
                         </div>
                         <!-- card footer -->
