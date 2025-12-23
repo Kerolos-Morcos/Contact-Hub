@@ -201,7 +201,7 @@ function handleDisplayLocalStorage() {
 }
 handleDisplayLocalStorage();
 
-// Items Length
+// Items Length 
 function getItemsLength(items) {
   allContactsLength.innerHTML = items.length;
   totalStats.innerHTML = items.length;
