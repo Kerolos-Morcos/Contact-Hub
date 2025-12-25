@@ -741,7 +741,8 @@ nav.navbar {
 
 /* Avatar */
 .avatar-preview,
-#avatarPreview {
+#avatarImg,
+#avatarInitials {
   width: 96px;
   height: 96px;
   border-radius: 50%;

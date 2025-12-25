@@ -1,9 +1,9 @@
 // Selecting Modal For Styling
 const addModal = document.getElementById("addModal");
+const addBtn = document.getElementById("addBtn");
 // Selecting Contacts Card Container
 const contactCardsRow = document.getElementById("contactCardsRow");
 //  Modal Inputs
-const contactAvatar = document.getElementById("contactAvatar");
 const contactFullName = document.getElementById("contactFullName");
 const contactPhoneNumber = document.getElementById("contactPhoneNumber");
 const contactEmail = document.getElementById("contactEmail");
@@ -18,8 +18,10 @@ const modalTitle = document.querySelector(".modal-title");
 const saveContactBtn = document.getElementById("saveContactBtn");
 // Image Handler
 const avatarInput = document.getElementById("contactAvatar");
-const avatarPreview = document.getElementById("avatarPreview");
+const avatarImg = document.getElementById("avatarImg");
 const avatarIcon = document.querySelector(".fa-user");
+// const avatarPreviewContainer = document.querySelector(".avatar-preview");
+const avatarInitials = document.getElementById("avatarInitials");
 // Handle no-contacts
 const noContacts = document.querySelector(".no-contacts");
 // All Contacts Length
@@ -63,8 +65,8 @@ avatarInput.addEventListener("change", function () {
   if (!file) return;
   handleAvatar(file, function (dataURL) {
     avatarURL = dataURL;
-    avatarPreview.src = avatarURL;
-    avatarPreview.classList.remove("d-none");
+    avatarImg.src = avatarURL;
+    avatarImg.classList.remove("d-none");
     avatarIcon.style.display = "none";
   });
 });
@@ -136,6 +138,7 @@ function closeModal() {
 
 // Clear Modal Inputs
 function clearModalInputs() {
+  // inputs
   contactFullName.value = "";
   contactPhoneNumber.value = "";
   contactEmail.value = "";
@@ -144,12 +147,23 @@ function clearModalInputs() {
   contactNotes.value = "";
   contactFavorite.checked = false;
   contactEmergency.checked = false;
-  avatarPreview.classList.add("d-none");
-  avatarPreview.src = "";
+  // avatar
+  avatarImg.src = "";
+  avatarImg.classList.add("d-none");
+  //  name
+  avatarInitials.textContent = "";
+  avatarInitials.classList.add("d-none");
+  avatarURL = null;
+  avatarInput.value = "";
+  // icon
   avatarIcon.style.display = "block";
 }
 
 // Add Contact Function
+addBtn.addEventListener("click", () => {
+  modalTitle.textContent = "Add Contact";
+  clearModalInputs();
+});
 let contacts = [];
 function addContactFun() {
   let contactInfo = {
@@ -244,24 +258,40 @@ function deleteContactFun(id) {
 }
 
 // Update Contact By Id Fun
-// function updateContactFun(id) {
-//   modalTitle.innerText = "Edit Contact";
-//   for (let i = 0; i < contacts.length; i++) {
-//     if (contacts[i].id === id) {
-//       contactFullName.value = contacts[i].name;
-//       contactPhoneNumber.value = contacts[i].phone;
-//       contactEmail.value = contacts[i].email;
-//       contactAddress.value = contacts[i].address;
-//       groupSelect.value = contacts[i].group;
-//       contactNotes.value = contacts[i].notes;
-//       contactFavorite.checked = contacts[i].isFavorite;
-//       contactEmergency.checked = contacts[i].isEmergency;
-//       // avatar
+function updateContactFun(id) {
+  clearModalInputs();
+  modalTitle.textContent = "Edit Contact";
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].id === id) {
+      contactFullName.value = contacts[i].name;
+      contactPhoneNumber.value = contacts[i].phone;
+      contactEmail.value = contacts[i].email;
+      contactAddress.value = contacts[i].address;
+      groupSelect.value = contacts[i].group;
+      contactNotes.value = contacts[i].notes;
+      contactFavorite.checked = contacts[i].isFavorite;
+      contactEmergency.checked = contacts[i].isEmergency;
 
-//       break;
-//     }
-//   }
-// }
+      if (contacts[i].avatar.startsWith("data:")) {
+        avatarURL = contacts[i].avatar;
+        avatarImg.src = avatarURL;
+        avatarImg.classList.remove("d-none");
+        avatarInitials.classList.add("d-none");
+        avatarIcon.style.display = "none";
+      } else {
+        // initials
+        avatarInitials.textContent = contacts[i].avatar;
+        avatarInitials.classList.remove("d-none");
+        avatarImg.classList.add("d-none");
+        avatarIcon.style.display = "none";
+        avatarURL = null;
+      }
+      break;
+    }
+  }
+  const modalInstance = new bootstrap.Modal(addModal);
+  modalInstance.show();
+}
 
 // HTML Structure Display
 function displayContactFun() {
@@ -432,6 +462,7 @@ function displayContactFun() {
                               onclick="updateContactFun(${contacts[i].id})"
                               class="icon-btn icon-gray hover-indigo"
                               title="Edit"
+                              id="editBtn"
                             >
                               <i class="fa-solid fa-pen"></i>
                             </button>
@@ -455,18 +486,78 @@ function displayContactFun() {
   contactCardsRow.innerHTML = box;
 }
 
-function updateContactFun(currentEditId) {
-  const index = contacts.findIndex((c) => c.id === currentEditId);
-  if (index === -1) return;
+// let currentEditId = null;
+// function updateContactFun(id) {
+//   currentEditId = id;
 
-  localStorage.setItem("contacts", JSON.stringify(contacts));
-  handleDisplayLocalStorage();
+//   const contact = contacts.find((c) => c.id === id);
+//   if (!contact) return;
 
-  closeModal();
-  clearModalInputs();
+//   const modalInstance = new bootstrap.Modal(addModal);
+//   modalInstance.show();
 
-  isEditMode = false;
-  currentEditId = null;
+//   modalTitle.textContent = "Edit Contact";
 
-  Swal.fire("Updated!", "Contact updated successfully.", "success");
-}
+//   contactFullName.value = contact.name;
+//   contactPhoneNumber.value = contact.phone;
+//   contactEmail.value = contact.email;
+//   contactAddress.value = contact.address;
+//   groupSelect.value = contact.group;
+//   contactNotes.value = contact.notes;
+//   contactFavorite.checked = contact.isFavorite;
+//   contactEmergency.checked = contact.isEmergency;
+
+//   if (contact.avatar.startsWith("data:")) {
+//     avatarImg.src = contact.avatar;
+//     avatarImg.classList.remove("d-none");
+//     avatarIcon.style.display = "none";
+//     avatarURL = contact.avatar;
+//   } else {
+//     avatarImg.classList.add("d-none");
+//     avatarImg.src = "";
+//     avatarIcon.style.display = "block";
+//     avatarIcon.textContent = contact.avatar;
+//     avatarURL = null;
+//   }
+// }
+
+// function saveUpdatedContact() {
+//   validateInputs();
+//   const index = contacts.findIndex((c) => c.id === currentEditId);
+//   if (index === -1) return;
+//   let existingPN = contacts.find(
+//     (c, i) => c.phone === contactPhoneNumber.value.trim() && i !== index
+//   );
+//   if (existingPN) {
+//     Swal.fire({
+//       title: "Error!",
+//       text: `Contact with this phone number already exists: ${existingPN.name}`,
+//       icon: "error",
+//       confirmButtonText: "Ok",
+//     });
+//     return;
+//   }
+//   contacts[index] = {
+//     ...contacts[index],
+//     name: contactFullName.value.trim(),
+//     phone: contactPhoneNumber.value.trim(),
+//     email: contactEmail.value.trim(),
+//     address: contactAddress.value.trim(),
+//     group: groupSelect.value,
+//     notes: contactNotes.value.trim(),
+//     isFavorite: contactFavorite.checked,
+//     isEmergency: contactEmergency.checked,
+//     avatar: avatarURL ? avatarURL : getInitials(contactFullName.value), // لو مفيش صورة، نستخدم initials
+//   };
+//   localStorage.setItem("contacts", JSON.stringify(contacts));
+//   handleDisplayLocalStorage();
+//   Swal.fire({
+//     title: "Updated!",
+//     text: "Contact updated successfully.",
+//     icon: "success",
+//     confirmButtonText: "Ok",
+//   });
+//   closeModal();
+//   clearModalInputs();
+//   currentEditId = null;
+// }
