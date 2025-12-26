@@ -543,8 +543,25 @@ function displayContactFun() {
 }
 
 // Toggle Favorite
-function toggleFavorite() {
-  
+function toggleFavorite(id) {
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].id === id) {
+      contacts[i].isFavorite = !contacts[i].isFavorite;
+      localStorage.setItem("contacts", JSON.stringify(contacts));
+      handleDisplayLocalStorage();
+      break;
+    }
+  }
 }
 
 // Toggle Emergency
+function toggleEmergency(id) {
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].id === id) {
+      contacts[i].isEmergency = !contacts[i].isEmergency;
+      localStorage.setItem("contacts", JSON.stringify(contacts));
+      handleDisplayLocalStorage();
+      break;
+    }
+  }
+}
