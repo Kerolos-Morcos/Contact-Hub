@@ -52,7 +52,6 @@ function validation(input) {
 }
 
 // Image Handler
-let avatarURL = null;
 function handleAvatar(file, callback) {
   const reader = new FileReader();
   reader.onload = function (e) {
@@ -60,6 +59,7 @@ function handleAvatar(file, callback) {
   };
   reader.readAsDataURL(file);
 }
+let avatarURL = null;
 avatarInput.addEventListener("change", function () {
   const file = this.files[0];
   if (!file) return;
@@ -116,8 +116,12 @@ function validateInputs() {
 // Save Contact
 saveContactBtn.addEventListener("click", saveContact);
 function saveContact() {
-  validateInputs();
-  addContactFun();
+  if (updateId === null) {
+    validateInputs();
+    addContactFun();
+  } else {
+    saveUpdatedContact();
+  }
 }
 
 // Cancel Button
@@ -162,10 +166,12 @@ function clearModalInputs() {
 // Add Contact Function
 addBtn.addEventListener("click", () => {
   modalTitle.textContent = "Add Contact";
+  updateId = null;
   clearModalInputs();
 });
 let contacts = [];
 function addContactFun() {
+  updateId = null;
   let contactInfo = {
     id: Date.now(),
     name: contactFullName.value.trim(),
@@ -258,9 +264,18 @@ function deleteContactFun(id) {
 }
 
 // Update Contact By Id Fun
+let updateId = null;
 function updateContactFun(id) {
+  updateId = id;
   clearModalInputs();
   modalTitle.textContent = "Edit Contact";
+  updateContactInputs(id);
+  const modalInstance = new bootstrap.Modal(addModal);
+  modalInstance.show();
+}
+
+// Update Contact Inputs
+function updateContactInputs(id) {
   for (let i = 0; i < contacts.length; i++) {
     if (contacts[i].id === id) {
       contactFullName.value = contacts[i].name;
@@ -289,8 +304,37 @@ function updateContactFun(id) {
       break;
     }
   }
-  const modalInstance = new bootstrap.Modal(addModal);
-  modalInstance.show();
+}
+
+// Save Updated Contact Button Function
+function saveUpdatedContact() {
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].id === updateId) {
+      contacts[i].name = contactFullName.value.trim();
+      contacts[i].phone = contactPhoneNumber.value.trim();
+      contacts[i].email = contactEmail.value.trim();
+      contacts[i].address = contactAddress.value.trim();
+      contacts[i].group = groupSelect.value;
+      contacts[i].notes = contactNotes.value.trim();
+      contacts[i].isFavorite = contactFavorite.checked;
+      contacts[i].isEmergency = contactEmergency.checked;
+      contacts[i].avatar = avatarURL
+        ? avatarURL
+        : getInitials(contactFullName.value);
+      break;
+    }
+  }
+  localStorage.setItem("contacts", JSON.stringify(contacts));
+  handleDisplayLocalStorage();
+  Swal.fire({
+    title: "Updated!",
+    text: "Contact updated successfully.",
+    icon: "success",
+    confirmButtonText: "Ok",
+  });
+  closeModal();
+  clearModalInputs();
+  editId = null;
 }
 
 // HTML Structure Display
@@ -485,79 +529,3 @@ function displayContactFun() {
 
   contactCardsRow.innerHTML = box;
 }
-
-// let currentEditId = null;
-// function updateContactFun(id) {
-//   currentEditId = id;
-
-//   const contact = contacts.find((c) => c.id === id);
-//   if (!contact) return;
-
-//   const modalInstance = new bootstrap.Modal(addModal);
-//   modalInstance.show();
-
-//   modalTitle.textContent = "Edit Contact";
-
-//   contactFullName.value = contact.name;
-//   contactPhoneNumber.value = contact.phone;
-//   contactEmail.value = contact.email;
-//   contactAddress.value = contact.address;
-//   groupSelect.value = contact.group;
-//   contactNotes.value = contact.notes;
-//   contactFavorite.checked = contact.isFavorite;
-//   contactEmergency.checked = contact.isEmergency;
-
-//   if (contact.avatar.startsWith("data:")) {
-//     avatarImg.src = contact.avatar;
-//     avatarImg.classList.remove("d-none");
-//     avatarIcon.style.display = "none";
-//     avatarURL = contact.avatar;
-//   } else {
-//     avatarImg.classList.add("d-none");
-//     avatarImg.src = "";
-//     avatarIcon.style.display = "block";
-//     avatarIcon.textContent = contact.avatar;
-//     avatarURL = null;
-//   }
-// }
-
-// function saveUpdatedContact() {
-//   validateInputs();
-//   const index = contacts.findIndex((c) => c.id === currentEditId);
-//   if (index === -1) return;
-//   let existingPN = contacts.find(
-//     (c, i) => c.phone === contactPhoneNumber.value.trim() && i !== index
-//   );
-//   if (existingPN) {
-//     Swal.fire({
-//       title: "Error!",
-//       text: `Contact with this phone number already exists: ${existingPN.name}`,
-//       icon: "error",
-//       confirmButtonText: "Ok",
-//     });
-//     return;
-//   }
-//   contacts[index] = {
-//     ...contacts[index],
-//     name: contactFullName.value.trim(),
-//     phone: contactPhoneNumber.value.trim(),
-//     email: contactEmail.value.trim(),
-//     address: contactAddress.value.trim(),
-//     group: groupSelect.value,
-//     notes: contactNotes.value.trim(),
-//     isFavorite: contactFavorite.checked,
-//     isEmergency: contactEmergency.checked,
-//     avatar: avatarURL ? avatarURL : getInitials(contactFullName.value), // لو مفيش صورة، نستخدم initials
-//   };
-//   localStorage.setItem("contacts", JSON.stringify(contacts));
-//   handleDisplayLocalStorage();
-//   Swal.fire({
-//     title: "Updated!",
-//     text: "Contact updated successfully.",
-//     icon: "success",
-//     confirmButtonText: "Ok",
-//   });
-//   closeModal();
-//   clearModalInputs();
-//   currentEditId = null;
-// }
