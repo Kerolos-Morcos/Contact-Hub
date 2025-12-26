@@ -558,8 +558,8 @@ nav.navbar {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
-  background-color: transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  background-color: var(--color-gray-50);
 }
 
 .icon-btn i {
@@ -584,25 +584,53 @@ nav.navbar {
   background-color: var(--color-purple-200);
 }
 
-.icon-amber {
-  background-color: var(--color-amber-50);
+/* Footer Btns */
+/* gray */
+.icon-btn:has(.icon-gray) {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-gray-200);
+}
+.icon-gray {
+  color: var(--color-gray-500);
+}
+.icon-btn:hover {
+  background-color: var(--color-gray-100);
+}
+
+/* amber */
+.icon-btn.icon-amber:not(:has(.fa-solid)):hover i {
   color: var(--color-amber-500);
 }
-.icon-amber:hover {
+
+.icon-btn.icon-amber:has(.fa-solid) {
+  background-color: var(--color-amber-50);
+  border-color: var(--color-amber-200);
+}
+
+.icon-btn.icon-amber:has(.fa-solid) i {
+  color: var(--color-amber-500);
+}
+
+.icon-btn.icon-amber:has(.fa-solid):hover {
   background-color: var(--color-amber-100);
 }
 
-.icon-rose {
-  background-color: var(--color-rose-50);
+/* rose */
+.icon-btn.icon-rose:not(:has(.fa-solid)):hover i {
   color: var(--color-rose-600);
 }
-.icon-rose:hover {
-  background-color: var(--color-rose-100);
+
+.icon-btn.icon-rose:has(.fa-solid) {
+  background-color: var(--color-rose-50);
+  border-color: var(--color-rose-200);
 }
 
-.icon-gray {
-  background-color: var(--color-gray-50);
-  color: var(--color-gray-500);
+.icon-btn.icon-rose:has(.fa-solid) i {
+  color: var(--color-rose-600);
+}
+
+.icon-btn.icon-rose:has(.fa-solid):hover {
+  background-color: var(--color-rose-100);
 }
 
 /* hover variants */

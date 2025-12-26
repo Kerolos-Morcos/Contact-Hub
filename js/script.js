@@ -30,6 +30,9 @@ const allContactsLength = document.querySelector(".all-contacts p span");
 const totalStats = document.querySelector(".totalStats");
 const favoriteStats = document.querySelector(".favoriteStats");
 const emergencyStats = document.querySelector(".emergencyStats");
+// Favorite & Emergency Buttons & Contacts
+const emergencyIcon = document.getElementById("emergencyIcon");
+const favIcon = document.getElementById("favIcon");
 
 // Regular Expressions For Validation
 const regex = {
@@ -487,28 +490,37 @@ function displayContactFun() {
                             class="d-flex align-items-center gap-custom padding-all"
                           >
                             <button
-                              onclick="toggleFavorite('contact_1765991405056_914')"
+                              onclick="toggleFavorite(${contacts[i].id})"
                               class="icon-btn icon-amber"
                               title="Favorite"
+                              id="favBtn"
                             >
-                              <i class="fa-solid fa-star"></i>
+                            ${
+                              contacts[i].isFavorite
+                                ? `<i class="fa-solid icon-amber fa-star"></i>`
+                                : `<i class="fa-regular icon-gray fa-star"></i>`
+                            }
                             </button>
 
                             <button
-                              onclick="toggleEmergency('contact_1765991405056_914')"
+                              onclick="toggleEmergency(${contacts[i].id})"
                               class="icon-btn icon-rose"
                               title="Emergency"
+                              id="emergencyIcon"
                             >
-                              <i class="fa-solid fa-heart-pulse"></i>
+                            ${
+                              contacts[i].isEmergency
+                                ? `<i class="fa-solid icon-rose fa-heart-pulse"></i>`
+                                : `<i class="fa-regular icon-gray fa-heart"></i>`
+                            }
                             </button>
 
                             <button
                               onclick="updateContactFun(${contacts[i].id})"
                               class="icon-btn icon-gray hover-indigo"
                               title="Edit"
-                              id="editBtn"
                             >
-                              <i class="fa-solid fa-pen"></i>
+                              <i class="fa-solid fa-pen" id="editIcon"></i>
                             </button>
 
                             <button
@@ -529,3 +541,10 @@ function displayContactFun() {
 
   contactCardsRow.innerHTML = box;
 }
+
+// Toggle Favorite
+function toggleFavorite() {
+  
+}
+
+// Toggle Emergency
