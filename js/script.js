@@ -33,6 +33,11 @@ const emergencyStats = document.querySelector(".emergencyStats");
 // Favorite & Emergency Buttons & Contacts
 const emergencyIcon = document.getElementById("emergencyIcon");
 const favIcon = document.getElementById("favIcon");
+// Aside List
+const favoritesContainer = document.querySelector(".contacts-list");
+const emergencyContainer = document.querySelector(".emergency-container");
+const noFavorites = document.querySelector(".favorites-card-body");
+const noEmergency = document.getElementById("noEmergency");
 
 // Regular Expressions For Validation
 const regex = {
@@ -169,7 +174,6 @@ function clearModalInputs() {
 // Add Contact Function
 addBtn.addEventListener("click", () => {
   modalTitle.textContent = "Add Contact";
-  updateId = null;
   clearModalInputs();
 });
 let contacts = [];
@@ -200,7 +204,7 @@ function addContactFun() {
   contacts.push(contactInfo);
   //   LocalStorage
   localStorage.setItem("contacts", JSON.stringify(contacts));
-  console.log(contactInfo);
+  // console.log(contactInfo);
   handleDisplayLocalStorage();
   Swal.fire({
     title: "Success!",
@@ -223,6 +227,8 @@ function handleDisplayLocalStorage() {
   }
   getItemsLength();
   displayContactFun();
+  displayFavoriteContacts();
+  displayEmergencyContacts();
 }
 handleDisplayLocalStorage();
 
@@ -360,7 +366,6 @@ function displayContactFun() {
                                 : `<div class="avatar-initials">${contacts[i].avatar}</div>`
                             }
                            </div>
-
                               <!-- Emergency -->
                               ${
                                 contacts[i].isEmergency
@@ -386,7 +391,6 @@ function displayContactFun() {
                               >
                                 ${contacts[i].name}
                               </h6>
-
                               <div class="d-flex align-items-center gap-2">
                                 <span
                                   class="icon-box d-flex align-items-center justify-content-center phone"
@@ -399,7 +403,6 @@ function displayContactFun() {
                               </div>
                             </div>
                           </div>
-
                           <!-- card contact mail & location -->
                           <div class="mt-3 info-list padding-all">
                             <!-- Email -->
@@ -473,14 +476,12 @@ function displayContactFun() {
                             >
                               <i class="fa-solid fa-phone"></i>
                             </a>
-
                             <button
                               onclick="window.location.href='mailto:${
                                 contacts[i].email
                               }'"
                               class="icon-btn icon-violet"
                               title="Email"
-                              href="mailto:${contacts[i].email}"
                             >
                               <i class="fa-solid fa-envelope"></i>
                             </button>
@@ -538,7 +539,6 @@ function displayContactFun() {
                     </div>
     `;
   }
-
   contactCardsRow.innerHTML = box;
 }
 
@@ -553,6 +553,40 @@ function toggleFavorite(id) {
     }
   }
 }
+// Display Favorite Contacts
+function displayFavoriteContacts() {
+  const favoriteContacts = contacts.filter((c) => c.isFavorite);
+  if (favoriteContacts.length === 0) {
+    favoritesContainer.classList.add("d-none");
+    favoritesContainer.innerHTML = "";
+    noFavorites.classList.remove("d-none");
+    return;
+  }
+  favoritesContainer.classList.remove("d-none");
+  noFavorites.classList.add("d-none");
+  let box = "";
+  for (let i = 0; i < favoriteContacts.length; i++) {
+    box += `
+      <div class="contact-item">
+        <div class="contact-avatar">
+          ${
+            favoriteContacts[i].avatar.startsWith("data:")
+              ? `<img src="${favoriteContacts[i].avatar}" />`
+              : `<div class="avatar-initials p-1 rounded-3 px-2">${favoriteContacts[i].avatar}</div>`
+          }
+        </div>
+        <div class="contact-info mt-2">
+          <h4 class="contact-name">${favoriteContacts[i].name}</h4>
+          <p class="contact-phone">${favoriteContacts[i].phone}</p>
+        </div>
+        <a href="tel:${favoriteContacts[i].phone}" class="call-btn">
+          <i class="fa-solid fa-phone"></i>
+        </a>
+      </div>
+    `;
+  }
+  favoritesContainer.innerHTML = box;
+}
 
 // Toggle Emergency
 function toggleEmergency(id) {
@@ -564,4 +598,40 @@ function toggleEmergency(id) {
       break;
     }
   }
+}
+// Display Emergency Contacts
+function displayEmergencyContacts() {
+  const emergencyContacts = contacts.filter((c) => c.isEmergency);
+  if (emergencyContacts.length === 0) {
+    emergencyContainer.classList.add("d-none");
+    emergencyContainer.innerHTML = "";
+    noEmergency.classList.remove("d-none");
+    return;
+  }
+  emergencyContainer.classList.remove("d-none");
+  noEmergency.classList.add("d-none");
+  let box = "";
+  for (let i = 0; i < emergencyContacts.length; i++) {
+    box += `
+      <div class="contact-item">
+        <div class="contact-avatar">
+          ${
+            emergencyContacts[i].avatar.startsWith("data:")
+              ? `<img src="${emergencyContacts[i].avatar}" />`
+              : `<div class="avatar-initials p-1 rounded-3 px-2">${emergencyContacts[i].avatar}</div>`
+          }
+        </div>
+        <div class="contact-info mt-2">
+          <h4 class="contact-name">${emergencyContacts[i].name}</h4>
+          <p class="contact-phone">${emergencyContacts[i].phone}</p>
+        </div>
+        <a href="tel:${
+          emergencyContacts[i].phone
+        }" class="call-btn emergency-call-btn">
+          <i class="fa-solid fa-phone"></i>
+        </a>
+      </div>
+    `;
+  }
+  emergencyContainer.innerHTML = box;
 }

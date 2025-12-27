@@ -317,7 +317,7 @@ nav.navbar {
   border-radius: 15px;
   border: 2px solid var(--color-gray-200);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-  overflow: clip;
+  overflow: auto;
   width: 93%;
   margin-left: auto;
 }
@@ -648,6 +648,7 @@ nav.navbar {
 .contacts-list {
   max-height: 320px;
   overflow-y: auto;
+  scrollbar-width: none;
 }
 
 /* Contact item */
@@ -729,6 +730,16 @@ nav.navbar {
 
 .call-btn i {
   font-size: 12px;
+}
+/* Emergency Call Btn */
+.emergency-call-btn {
+  background-color: var(--color-rose-100);
+  color: var(--color-rose-600);
+}
+
+.contact-item:hover .emergency-call-btn {
+  background-color: var(--color-rose-500);
+  color: #ffffff;
 }
 
 /* Modal Add */
