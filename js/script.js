@@ -179,7 +179,6 @@ addBtn.addEventListener("click", () => {
   clearModalInputs();
 });
 let contacts = [];
-let searchedContacts = [];
 function addContactFun() {
   updateId = null;
   let contactInfo = {
@@ -350,7 +349,7 @@ function saveUpdatedContact() {
 }
 
 // HTML Structure Display
-function displayContactFun(list=contacts) {
+function displayContactFun(list = contacts) {
   let box = "";
   for (let i = 0; i < list.length; i++) {
     box += `
@@ -653,10 +652,12 @@ function searchFun() {
       contacts[i].email.toLowerCase().includes(searchValue) ||
       contacts[i].phone.includes(searchValue)
     ) {
+      noContacts.classList.replace("d-block", "d-none");
       searchedContacts.push(contacts[i]);
+    } else {
+      noContacts.classList.replace("d-none", "d-block");
     }
   }
 
   displayContactFun(searchedContacts);
 }
-
