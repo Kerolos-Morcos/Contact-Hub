@@ -38,6 +38,8 @@ const favoritesContainer = document.querySelector(".contacts-list");
 const emergencyContainer = document.querySelector(".emergency-container");
 const noFavorites = document.querySelector(".favorites-card-body");
 const noEmergency = document.getElementById("noEmergency");
+// Search Input
+const searchInput = document.getElementById("searchInput");
 
 // Regular Expressions For Validation
 const regex = {
@@ -177,6 +179,7 @@ addBtn.addEventListener("click", () => {
   clearModalInputs();
 });
 let contacts = [];
+let searchedContacts = [];
 function addContactFun() {
   updateId = null;
   let contactInfo = {
@@ -347,9 +350,9 @@ function saveUpdatedContact() {
 }
 
 // HTML Structure Display
-function displayContactFun() {
+function displayContactFun(list=contacts) {
   let box = "";
-  for (let i = 0; i < contacts.length; i++) {
+  for (let i = 0; i < list.length; i++) {
     box += `
     <div class="col-12 col-sm-6 col-xl-6">
         <!-- card -->
@@ -361,14 +364,14 @@ function displayContactFun() {
                     <div class="position-relative flex-shrink-0">
                         <div class="avatar-wrapper">
                             ${
-                              contacts[i].avatar.startsWith("data:")
-                                ? `<img src="${contacts[i].avatar}" class="avatar-img" />`
-                                : `<div class="avatar-initials">${contacts[i].avatar}</div>`
+                              list[i].avatar.startsWith("data:")
+                                ? `<img src="${list[i].avatar}" class="avatar-img" />`
+                                : `<div class="avatar-initials">${list[i].avatar}</div>`
                             }
                            </div>
                               <!-- Emergency -->
                               ${
-                                contacts[i].isEmergency
+                                list[i].isEmergency
                                   ? `<span class="avatar-badge badge-danger">
                                     <i class="fa-solid fa-heart-pulse"></i>
                                   </span>`
@@ -377,7 +380,7 @@ function displayContactFun() {
                               
                               <!-- Favorite -->
                               ${
-                                contacts[i].isFavorite
+                                list[i].isFavorite
                                   ? `<span class="avatar-badge badge-warning">
                                 <i class="fa-solid fa-star"></i>
                               </span>`
@@ -389,7 +392,7 @@ function displayContactFun() {
                               <h6
                                 class="mb-1 fw-semibold text-dark text-truncate"
                               >
-                                ${contacts[i].name}
+                                ${list[i].name}
                               </h6>
                               <div class="d-flex align-items-center gap-2">
                                 <span
@@ -398,7 +401,7 @@ function displayContactFun() {
                                   <i class="fa-solid fa-phone"></i>
                                 </span>
                                 <span class="text-muted small text-truncate">
-                                  ${contacts[i].phone}
+                                  ${list[i].phone}
                                 </span>
                               </div>
                             </div>
@@ -411,18 +414,18 @@ function displayContactFun() {
                                 <i class="fa-solid fa-envelope"></i>
                               </span>
                               <span class="text-muted small text-truncate">
-                                ${contacts[i].email}
+                                ${list[i].email}
                               </span>
                             </div>
                             <!-- Location -->
                             ${
-                              contacts[i].address
+                              list[i].address
                                 ? `<div class="d-flex align-items-center gap-2">
                                 <span class="icon-box location">
                                   <i class="fa-solid fa-location-dot"></i>
                                 </span>
                                 <span class="text-muted small text-truncate">
-                                  ${contacts[i].address}
+                                  ${list[i].address}
                                 </span>
                               </div>`
                                 : ``
@@ -449,10 +452,10 @@ function displayContactFun() {
                               Other: `<span class="badge-custom badge-other">
                               Other
                             </span>`,
-                            }[contacts[i].group] || ""
+                            }[list[i].group] || ""
                           }
                             ${
-                              contacts[i].isEmergency
+                              list[i].isEmergency
                                 ? `<span class="badge-custom badge-emergency">
                                   <i class="badge-icon fa-solid fa-heart-pulse"></i>
                                   Emergency
@@ -470,7 +473,7 @@ function displayContactFun() {
                             class="d-flex align-items-center gap-custom padding-all"
                           >
                             <a
-                              href="tel:${contacts[i].phone}"
+                              href="tel:${list[i].phone}"
                               class="icon-btn icon-emerald"
                               title="Call"
                             >
@@ -478,7 +481,7 @@ function displayContactFun() {
                             </a>
                             <button
                               onclick="window.location.href='mailto:${
-                                contacts[i].email
+                                list[i].email
                               }'"
                               class="icon-btn icon-violet"
                               title="Email"
@@ -491,33 +494,33 @@ function displayContactFun() {
                             class="d-flex align-items-center gap-custom padding-all"
                           >
                             <button
-                              onclick="toggleFavorite(${contacts[i].id})"
+                              onclick="toggleFavorite(${list[i].id})"
                               class="icon-btn icon-amber"
                               title="Favorite"
                               id="favBtn"
                             >
                             ${
-                              contacts[i].isFavorite
+                              list[i].isFavorite
                                 ? `<i class="fa-solid icon-amber fa-star"></i>`
                                 : `<i class="fa-regular icon-gray fa-star"></i>`
                             }
                             </button>
 
                             <button
-                              onclick="toggleEmergency(${contacts[i].id})"
+                              onclick="toggleEmergency(${list[i].id})"
                               class="icon-btn icon-rose"
                               title="Emergency"
                               id="emergencyIcon"
                             >
                             ${
-                              contacts[i].isEmergency
+                              list[i].isEmergency
                                 ? `<i class="fa-solid icon-rose fa-heart-pulse"></i>`
                                 : `<i class="fa-regular icon-gray fa-heart"></i>`
                             }
                             </button>
 
                             <button
-                              onclick="updateContactFun(${contacts[i].id})"
+                              onclick="updateContactFun(${list[i].id})"
                               class="icon-btn icon-gray hover-indigo"
                               title="Edit"
                             >
@@ -525,7 +528,7 @@ function displayContactFun() {
                             </button>
 
                             <button
-                              onclick="deleteContactFun(${contacts[i].id})"
+                              onclick="deleteContactFun(${list[i].id})"
                               class="icon-btn icon-gray hover-rose"
                               title="Delete"
                             >
@@ -635,3 +638,25 @@ function displayEmergencyContacts() {
   }
   emergencyContainer.innerHTML = box;
 }
+
+// Search Function
+function searchFun() {
+  let searchValue = searchInput.value.trim().toLowerCase();
+  if (searchValue === "") {
+    displayContactFun(contacts);
+    return;
+  }
+  let searchedContacts = [];
+  for (let i = 0; i < contacts.length; i++) {
+    if (
+      contacts[i].name.toLowerCase().includes(searchValue) ||
+      contacts[i].email.toLowerCase().includes(searchValue) ||
+      contacts[i].phone.includes(searchValue)
+    ) {
+      searchedContacts.push(contacts[i]);
+    }
+  }
+
+  displayContactFun(searchedContacts);
+}
+
