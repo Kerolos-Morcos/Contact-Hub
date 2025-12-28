@@ -77,6 +77,7 @@ avatarInput.addEventListener("change", function () {
     avatarURL = dataURL;
     avatarImg.src = avatarURL;
     avatarImg.classList.remove("d-none");
+    avatarInitials.classList.add("d-none");
     avatarIcon.style.display = "none";
   });
 });
@@ -179,9 +180,10 @@ addBtn.addEventListener("click", () => {
   clearModalInputs();
 });
 let contacts = [];
+let contactInfo = {};
 function addContactFun() {
   updateId = null;
-  let contactInfo = {
+  contactInfo = {
     id: Date.now(),
     name: contactFullName.value.trim(),
     phone: contactPhoneNumber.value.trim(),
