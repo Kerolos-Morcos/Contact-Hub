@@ -948,14 +948,22 @@ nav.navbar {
   justify-content: center;
   font-weight: 600;
   color: var(--color-white);
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   font-size: 16px;
 }
 
-.avatar-initials.bg-pink {
-  background: linear-gradient(135deg, #d946ef, #ec4899);
+/* Avatar Initial Name Colors */
+.avatar-blue {
+  background: linear-gradient(to bottom right, #06b6d4, #2563eb);
 }
 
-.avatar-initials.bg-blue {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+.avatar-rose {
+  background: linear-gradient(to bottom right, #f43f5e, #db2777);
+}
+
+.avatar-amber {
+  background: linear-gradient(to bottom right, #f59e0b, #ea580c);
+}
+
+.avatar-violet {
+  background: linear-gradient(to bottom right, #8b5cf6, #9333ea);
 }

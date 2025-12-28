@@ -365,7 +365,9 @@ function displayContactFun(list = contacts) {
                             ${
                               list[i].avatar.startsWith("data:")
                                 ? `<img src="${list[i].avatar}" class="avatar-img" />`
-                                : `<div class="avatar-initials">${list[i].avatar}</div>`
+                                : `<div class="avatar-initials ${getAvatarColorByName(
+                                    list[i].name
+                                  )}">${list[i].avatar}</div>`
                             }
                            </div>
                               <!-- Emergency -->
@@ -560,7 +562,6 @@ function displayFavoriteContacts() {
   const favoriteContacts = contacts.filter((c) => c.isFavorite);
   if (favoriteContacts.length === 0) {
     favoritesContainer.classList.add("d-none");
-    favoritesContainer.innerHTML = "";
     noFavorites.classList.remove("d-none");
     return;
   }
@@ -574,7 +575,9 @@ function displayFavoriteContacts() {
           ${
             favoriteContacts[i].avatar.startsWith("data:")
               ? `<img src="${favoriteContacts[i].avatar}" />`
-              : `<div class="avatar-initials p-1 rounded-3 px-2">${favoriteContacts[i].avatar}</div>`
+              : `<div style="width:40px; height:40px;" class="avatar-initials rounded-3 ${getAvatarColorByName(
+                  favoriteContacts[i].name
+                )}">${favoriteContacts[i].avatar}</div>`
           }
         </div>
         <div class="contact-info mt-2">
@@ -606,7 +609,6 @@ function displayEmergencyContacts() {
   const emergencyContacts = contacts.filter((c) => c.isEmergency);
   if (emergencyContacts.length === 0) {
     emergencyContainer.classList.add("d-none");
-    emergencyContainer.innerHTML = "";
     noEmergency.classList.remove("d-none");
     return;
   }
@@ -620,7 +622,9 @@ function displayEmergencyContacts() {
           ${
             emergencyContacts[i].avatar.startsWith("data:")
               ? `<img src="${emergencyContacts[i].avatar}" />`
-              : `<div class="avatar-initials p-1 rounded-3 px-2">${emergencyContacts[i].avatar}</div>`
+              : `<div style="width:40px; height:40px;" class="avatar-initials rounded-3 ${getAvatarColorByName(
+                  emergencyContacts[i].name
+                )}">${emergencyContacts[i].avatar}</div>`
           }
         </div>
         <div class="contact-info mt-2">
@@ -660,4 +664,23 @@ function searchFun() {
   }
 
   displayContactFun(searchedContacts);
+}
+
+// Changing Initial Text Avatar Bg-Color By First Char of Name
+function getAvatarColorByName(name) {
+  if (!name) return "avatar-blue";
+
+  const firstChar = name.trim()[0].toUpperCase();
+
+  if (firstChar >= "A" && firstChar <= "F") {
+    return "avatar-blue";
+  }
+
+  if (firstChar >= "G" && firstChar <= "L") {
+    return "avatar-rose";
+  }
+
+  if (firstChar >= "M" && firstChar <= "R") {
+    return "avatar-amber";
+  } else return "avatar-violet";
 }
