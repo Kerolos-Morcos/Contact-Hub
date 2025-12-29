@@ -104,7 +104,7 @@ function validateInputs() {
       icon: "error",
       confirmButtonText: "Ok",
     });
-    return;
+    return false;
   } else if (!validation(contactPhoneNumber)) {
     Swal.fire({
       title: "Invalid Phone!",
@@ -112,7 +112,7 @@ function validateInputs() {
       icon: "error",
       confirmButtonText: "Ok",
     });
-    return;
+    return false;
   } else if (!validation(contactEmail)) {
     Swal.fire({
       title: "Invalid Email!",
@@ -120,16 +120,18 @@ function validateInputs() {
       icon: "error",
       confirmButtonText: "Ok",
     });
-    return;
+    return false;
   }
+  return true;
 }
 
 // Save Contact
 saveContactBtn.addEventListener("click", saveContact);
 function saveContact() {
   if (updateId === null) {
-    validateInputs();
-    addContactFun();
+    if (!validateInputs()) {
+      return true;
+    } else addContactFun();
   } else {
     saveUpdatedContact();
   }
