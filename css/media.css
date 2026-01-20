@@ -72,6 +72,10 @@
     padding-left: 16px;
     padding-right: 16px;
   }
+  #deleteAllBtn {
+    font-size: 12px;
+    padding: 10px;
+  }
 }
 
 /* Small */
