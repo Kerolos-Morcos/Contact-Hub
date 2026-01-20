@@ -40,6 +40,8 @@ const noFavorites = document.querySelector(".favorites-card-body");
 const noEmergency = document.getElementById("noEmergency");
 // Search Input
 const searchInput = document.getElementById("searchInput");
+// Delete All Button
+const deleteAllBtn = document.getElementById("deleteAllBtn");
 
 // Regular Expressions For Validation
 const regex = {
@@ -130,7 +132,7 @@ saveContactBtn.addEventListener("click", saveContact);
 function saveContact() {
   if (updateId === null) {
     if (!validateInputs()) {
-      return true;
+      return;
     } else addContactFun();
   } else {
     saveUpdatedContact();
@@ -210,7 +212,6 @@ function addContactFun() {
   contacts.push(contactInfo);
   //   LocalStorage
   localStorage.setItem("contacts", JSON.stringify(contacts));
-  // console.log(contactInfo);
   handleDisplayLocalStorage();
   Swal.fire({
     title: "Success!",
@@ -228,9 +229,12 @@ function handleDisplayLocalStorage() {
   contacts = contactsLocalStorage ? contactsLocalStorage : [];
   if (contacts.length === 0) {
     noContacts.classList.replace("d-none", "d-block");
+    deleteAllBtn.classList.replace("d-block", "d-none");
   } else {
     noContacts.classList.replace("d-block", "d-none");
+    deleteAllBtn.classList.replace("d-none", "d-block");
   }
+
   getItemsLength();
   displayContactFun();
   displayFavoriteContacts();
@@ -349,7 +353,7 @@ function saveUpdatedContact() {
   });
   closeModal();
   clearModalInputs();
-  editId = null;
+  updateId = null;
 }
 
 // HTML Structure Display
@@ -370,7 +374,7 @@ function displayContactFun(list = contacts) {
                               list[i].avatar.startsWith("data:")
                                 ? `<img src="${list[i].avatar}" class="avatar-img" />`
                                 : `<div class="avatar-initials ${getAvatarColorByName(
-                                    list[i].name
+                                    list[i].name,
                                   )}">${list[i].avatar}</div>`
                             }
                            </div>
@@ -580,7 +584,7 @@ function displayFavoriteContacts() {
             favoriteContacts[i].avatar.startsWith("data:")
               ? `<img src="${favoriteContacts[i].avatar}" />`
               : `<div style="width:40px; height:40px;" class="avatar-initials rounded-3 ${getAvatarColorByName(
-                  favoriteContacts[i].name
+                  favoriteContacts[i].name,
                 )}">${favoriteContacts[i].avatar}</div>`
           }
         </div>
@@ -627,7 +631,7 @@ function displayEmergencyContacts() {
             emergencyContacts[i].avatar.startsWith("data:")
               ? `<img src="${emergencyContacts[i].avatar}" />`
               : `<div style="width:40px; height:40px;" class="avatar-initials rounded-3 ${getAvatarColorByName(
-                  emergencyContacts[i].name
+                  emergencyContacts[i].name,
                 )}">${emergencyContacts[i].avatar}</div>`
           }
         </div>
@@ -687,4 +691,32 @@ function getAvatarColorByName(name) {
   if (firstChar >= "M" && firstChar <= "R") {
     return "avatar-amber";
   } else return "avatar-violet";
+}
+
+// Delete All Contacts Function
+deleteAllBtn.addEventListener("click", deleteAllContacts);
+function deleteAllContacts() {
+  if (contacts.length > 0) {
+    Swal.fire({
+      title: "Delete All Contacts?",
+      text: `Are you sure you want to delete all contacts?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#6b7280",
+      confirmButtonText: "Yes, delete all!",
+    }).then((choice) => {
+      if (choice.isConfirmed) {
+        localStorage.removeItem("contacts");
+        contacts = [];
+        handleDisplayLocalStorage();
+        Swal.fire({
+          title: "Deleted!",
+          text: "All contacts have been deleted.",
+          icon: "success",
+          showConfirmButton: false,
+        });
+      }
+    });
+  }
 }

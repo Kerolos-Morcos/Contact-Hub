@@ -166,7 +166,9 @@ nav.navbar {
   background-color: transparent;
   padding: 8px 10px;
   border-radius: 12px;
-  transition: background-color ease-in 0.2s, color ease-in 0.2s;
+  transition:
+    background-color ease-in 0.2s,
+    color ease-in 0.2s;
 }
 .extra-icons button:hover {
   background-color: #f0f0f0;
@@ -182,12 +184,35 @@ nav.navbar {
   );
   border-radius: 12px;
   padding: 10px 24px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 #addBtn:hover {
   transform: translateY(-3px);
   box-shadow: 0px 8px 12px rgba(139, 92, 246, 0.25);
 }
+/* Delete All Btn */
+#deleteAllBtn {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  background-image: linear-gradient(
+    to right,
+    var(--color-red-500),
+    var(--color-red-600)
+  );
+  border-radius: 12px;
+  padding: 10px 16px;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+#deleteAllBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 12px rgba(246, 95, 92, 0.25);
+}
+
 /* Stats Section */
 .stats-item {
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -265,7 +290,9 @@ nav.navbar {
 /* Input Search */
 #searchInput {
   padding: 12px 0px 12px 43px;
-  transition: box-shadow ease 0.4s, border ease 0.4s;
+  transition:
+    box-shadow ease 0.4s,
+    border ease 0.4s;
 }
 #searchInput::placeholder,
 .search-icon {
@@ -396,7 +423,10 @@ nav.navbar {
   border-radius: 11px;
   border: 1px solid var(--color-gray-100);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
   overflow: hidden;
 }
 
@@ -558,7 +588,9 @@ nav.navbar {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
   background-color: var(--color-gray-50);
 }
 
@@ -719,7 +751,9 @@ nav.navbar {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
   text-decoration: none;
 }
 
@@ -770,7 +804,9 @@ nav.navbar {
   color: var(--color-gray-400);
   border-radius: 8px;
   border: none;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .btn-close:hover {

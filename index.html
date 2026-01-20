@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -330,11 +330,22 @@
             <div class="col-xl-8">
               <div class="all-contacts">
                 <h2>All Contacts</h2>
-                <p>
-                  Manage and organize your
-                  <span></span>
-                  contacts
-                </p>
+                <div
+                  class="d-flex justify-content-between align-items-baseline"
+                >
+                  <p>
+                    Manage and organize your
+                    <span></span>
+                    contacts
+                  </p>
+                  <button
+                    id="deleteAllBtn"
+                    class="d-none border-0 bg-transparent text-white"
+                  >
+                    <i class="fa fa-trash"></i>
+                    Delete All
+                  </button>
+                </div>
                 <div class="searchInput position-relative">
                   <div
                     class="search-icon position-absolute translate-middle-y ms-3 top-50"
